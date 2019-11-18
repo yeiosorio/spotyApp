@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import * as SpotifyWebApi from 'spotify-web-api-js';
+// import * as SpotifyWebApi from 'spotify-web-api-js';
 
 @Component({
   selector: 'app-home',

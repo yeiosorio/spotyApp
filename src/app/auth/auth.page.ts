@@ -4,6 +4,7 @@ import { SpotifyService } from '../services/spotify.service';
 //import { NativeStorage } from '@ionic-native/native-storage/ngx';
 import { SpotifyAuth } from '@ionic-native/spotify-auth';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth',
@@ -14,11 +15,11 @@ export class AuthPage implements OnInit {
 
   public authForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, public spotifyService: SpotifyService, public http: HttpClient) { }
+  constructor(private formBuilder: FormBuilder, public spotifyService: SpotifyService, public http: HttpClient, private router: Router) { }
 
   config = {
-    clientId: "your-spotify-client-id",
-    redirectUrl: "devdacticspotify://callback",
+    clientId: "a079c3fd3aa6471db5813440511a67b7",
+    redirectUrl: "spotyApp://callback",
     scopes: ["streaming", "playlist-read-private", "user-read-email", "user-read-private"],
     tokenExchangeUrl: "https://spotifyoauthserver.herokuapp.com/exchange",
     tokenRefreshUrl: "https://spotifyoauthserver.herokuapp.com/refresh",
@@ -48,7 +49,14 @@ export class AuthPage implements OnInit {
     const pathUrl = `?response_type=code&client_id=a079c3fd3aa6471db5813440511a67b7&scope=${scope}`
     //http://localhost:8100/auth
     //Call the spotify authorize service
-    this.http.get(`https://accounts.spotify.com/authorize${pathUrl}&redirect_uri=spotyApp://callback`)
+    // this.http.get(`https://accounts.spotify.com/authorize${pathUrl}&redirect_uri=spotyApp://callback`)
+
+    SpotifyAuth.authorize(this.config)
+    .then(({ accessToken, expiresAt }) => {
+        console.log(accessToken);
+        this.router.navigate(['/tabs/home'])
+        
+    });
 
     // this.nativeStorage.setItem('token', 'test')
 
