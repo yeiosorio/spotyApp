@@ -7,8 +7,8 @@
         </ion-row>
 
         <form [formGroup]="authForm" (ngSubmit)="authorizeAccount()" novalidate >
-            <ion-item>
-                <ion-label position="stacked">Spotify E-Mail <ion-text color="danger">*</ion-text></ion-label>
+            <ion-item  class="itemEmail">
+                <ion-label position="floating">Spotify E-Mail <ion-text color="danger">*</ion-text></ion-label>
                 <ion-input required formControlName="email" type="text" clearInput min="3"></ion-input>
             </ion-item>
             <ion-item *ngIf="email.invalid && email.touched" lines="none">
@@ -16,13 +16,13 @@
                     Enter a valid email address!.
                 </ion-text>                                                                                                     
             </ion-item>
-            <ion-item>
-                    <ion-label position="stacked">Spotify Password <ion-text color="danger">*</ion-text></ion-label>
+            <ion-item class="itemPassword">
+                    <ion-label position="floating">Spotify Password <ion-text color="danger">*</ion-text></ion-label>
                     <ion-input required formControlName="password" type="password" clearInput min="3"></ion-input>
                 </ion-item>
             
-            <ion-button expand="block" color="primary" type="submit" [disabled]="authForm.invalid">
-                Sign In
+            <ion-button expand="block" shape="round" color="primary" type="submit">
+                Sign In with spotify
             </ion-button>
         </form>
 

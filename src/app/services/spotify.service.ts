@@ -1,11 +1,17 @@
 import { Injectable } from '@angular/core';
+import {Observable} from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SpotifyService {
 
-  constructor() { }
+	apiUrl: string = ""
+	
+	constructor(public http: HttpClient) { }
 
-  
+	
+
+
 }
